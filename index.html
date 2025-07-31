@@ -1,10 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ZOGO Universe</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ZOGO Universe Launch Countdown</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #eee;
+    font-family: 'Orbitron', monospace, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0.2rem;
+    color: #4af3ff;
+    text-shadow: 0 0 10px #4af3ff;
+  }
+
+  .countdown {
+    font-size: 3.5rem;
+    letter-spacing: 0.1em;
+    margin: 1rem 0 2rem;
+    color: #00ffc8;
+    text-shadow: 0 0 12px #00ffc8;
+  }
+
+  .socials {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #eee;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+  .social-link:hover {
+    color: #4af3ff;
+  }
+
+  svg {
+    width: 28px;
+    height: 28px;
+    filter: drop-shadow(0 0 2px #0ff);
+  }
+
+  footer {
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    color: #666;
+    font-family: monospace;
+  }
+</style>
 </head>
 <body>
-    <h1>Welcome to ZOGO Universe!</h1>
-    <p>This is my first GitHub Pages website.</p>
+
+<h1>🚀 Launching Soon!</h1>
+<div id="countdown" class="countdown">Loading...</div>
+
+<div class="socials">
+
+  <a class="social-link" href="https://www.youtube.com/@ZOGOUNIVERSE" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+    <svg viewBox="0 0 24 24" fill="#FF0000" xmlns="http://www.w3.org/2000/svg">
+      <path d="M23.498 6.186a2.997 2.997 0 0 0-2.108-2.12C19.596 3.5 12 3.5 12 3.5s-7.596 0-9.39.566a2.997 2.997 0 0 0-2.108 2.12 31.217 31.217 0 0 0-.002 5.626 2.997 2.997 0 0 0 2.11 2.12c1.795.57 9.39.57 9.39.57s7.596 0 9.39-.57a2.997 2.997 0 0 0 2.108-2.12 31.221 31.221 0 0 0-.002-5.627zM9.546 15.568V8.431l6.182 3.568-6.182 3.569z"/>
+    </svg>
+    YouTube
+  </a>
+
+  <a class="social-link" href="https://www.facebook.com/zogouniverse" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+    <svg viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.675 0H1.325C.593 0 0 .594 0 1.326v21.348C0 23.406.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.658-4.788 1.325 0 2.466.099 2.797.143v3.24l-1.918.001c-1.505 0-1.796.715-1.796 1.763v2.312h3.59l-.467 3.622h-3.123V24h6.116c.73 0 1.324-.594 1.324-1.326V1.326C24 .594 23.406 0 22.675 0z"/>
+    </svg>
+    Facebook
+  </a>
+
+  <a class="social-link" href="https://www.instagram.com/zogo_universe" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" fill="#E4405F" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5zm8.69 2.06a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+    </svg>
+    Instagram
+  </a>
+
+  <a class="social-link" href="https://www.tiktok.com/zogo_universe" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+    <svg viewBox="0 0 24 24" fill="#000000" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 3v12a4.5 4.5 0 0 0 4.5 4.5c2.48 0 4.5-2.02 4.5-4.5V6h-2a3.5 3.5 0 0 1-3.5-3H9z"/>
+    </svg>
+    TikTok
+  </a>
+
+</div>
+
+<footer>
+  &copy; 2025 ZOGO Universe
+</footer>
+
+<script>
+  // Target time in UTC (2025-08-15 21:30:00 UTC)
+  const targetDate = new Date('2025-08-15T21:30:00Z').getTime();
+
+  const countdownEl = document.getElementById('countdown');
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+      countdownEl.innerHTML = '🚀 Launch Time Has Arrived! 🚀';
+      clearInterval(timerInterval);
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownEl.innerHTML = 
+      `${days}d ` + 
+      `${String(hours).padStart(2,'0')}h ` + 
+      `${String(mins).padStart(2,'0')}m ` + 
+      `${String(secs).padStart(2,'0')}s`;
+  }
+
+  updateCountdown();
+  const timerInterval = setInterval(updateCountdown, 1000);
+</script>
+
 </body>
 </html>
