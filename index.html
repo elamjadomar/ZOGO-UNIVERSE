@@ -1,237 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ZOGO Has Been Launched</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZOGO Has Launched!</title>
   <style>
-    /* Reset & base */
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    html, body {
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(ellipse at center, #02020f 0%, #000000 80%);
+    body {
+      margin: 0;
+      background: black;
       color: #00ffcc;
-      user-select: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      animation: stars 100s linear infinite;
+    }
+
+    h1 {
+      font-size: 4em;
+      margin: 0.2em 0;
+      text-shadow: 0 0 20px #00ffcc;
+      animation: glow 2s infinite alternate;
+    }
+
+    h2 {
+      color: #ff3366;
+      margin-bottom: 2em;
+    }
+
+    .container {
       text-align: center;
+      padding-top: 10vh;
+      z-index: 2;
       position: relative;
     }
 
-    /* Starfield background */
-    .starfield {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background:
-        radial-gradient(white 1px, transparent 1px) 0 0 / 20px 20px repeat,
-        radial-gradient(white 1.5px, transparent 1.5px) 10px 10px / 40px 40px repeat,
-        radial-gradient(white 2px, transparent 2px) 20px 20px / 80px 80px repeat;
-      animation: starMove 200s linear infinite;
-      z-index: -1;
-      opacity: 0.7;
-    }
-    @keyframes starMove {
-      from { background-position: 0 0, 10px 10px, 20px 20px; }
-      to { background-position: 2000px 2000px, 2010px 2010px, 2020px 2020px; }
-    }
-
-    /* Floating emojis */
-    .floating-emoji {
-      position: fixed;
-      font-size: 4rem;
-      opacity: 0.3;
-      animation-timing-function: ease-in-out;
-      user-select: none;
-      filter: drop-shadow(0 0 4px #00ffcc);
-    }
-    /* Positions and animation delays */
-    #alien1 { top: 12%; left: 15%; animation: floatSideToSide 12s ease-in-out infinite alternate; }
-    #alien2 { top: 35%; left: 70%; animation: floatSideToSide 16s ease-in-out infinite alternate; animation-delay: 4s; }
-    #ship1 { top: 50%; left: 10%; animation: floatUpDown 18s ease-in-out infinite alternate; animation-delay: 1s; }
-    #ship2 { top: 70%; left: 80%; animation: floatUpDown 20s ease-in-out infinite alternate; animation-delay: 6s; }
-
-    @keyframes floatSideToSide {
-      0% { transform: translateX(0) translateY(0) rotate(0deg); }
-      50% { transform: translateX(30px) translateY(-10px) rotate(8deg); }
-      100% { transform: translateX(0) translateY(0) rotate(0deg); }
-    }
-    @keyframes floatUpDown {
-      0% { transform: translateY(0) translateX(0) rotate(0deg); }
-      50% { transform: translateY(-30px) translateX(15px) rotate(-10deg); }
-      100% { transform: translateY(0) translateX(0) rotate(0deg); }
-    }
-
-    /* Main Text */
-    .main-emoji {
-      font-size: 8rem;
-      filter: drop-shadow(0 0 15px #00ffcc);
-      animation: pulseGlow 3s ease-in-out infinite alternate;
-      user-select: none;
-    }
-    @keyframes pulseGlow {
-      from {
-        color: #00ffcc;
-        text-shadow:
-          0 0 20px #00ffcc,
-          0 0 40px #00ffcc;
-      }
-      to {
-        color: #aaffee;
-        text-shadow:
-          0 0 40px #00ffcc,
-          0 0 80px #00ffcc;
-      }
-    }
-
-    .zogo-text {
-      font-size: 5rem;
-      font-weight: 900;
-      letter-spacing: 0.3em;
-      margin-bottom: 10px;
-      user-select: none;
-      color: #00ffcc;
-      text-shadow:
-        0 0 30px #00ffcc,
-        0 0 60px #00ffcc;
-      animation: glowPulse 2.5s ease-in-out infinite alternate;
-    }
-    @keyframes glowPulse {
-      from {
-        color: #00ffcc;
-        text-shadow:
-          0 0 25px #00ffcc,
-          0 0 50px #00ffcc;
-      }
-      to {
-        color: #aaffee;
-        text-shadow:
-          0 0 50px #00ffcc,
-          0 0 100px #00ffcc;
-      }
-    }
-
-    .launch-text {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #ff004c;
-      text-shadow:
-        0 0 15px #ff004c,
-        0 0 40px #ff004c;
-      animation: shakeGlow 2s ease-in-out infinite alternate;
-      user-select: none;
-    }
-    @keyframes shakeGlow {
-      0%, 100% { transform: translateX(0); color: #ff004c; text-shadow: 0 0 15px #ff004c, 0 0 40px #ff004c; }
-      20%, 60% { transform: translateX(-6px); color: #ff3366; text-shadow: 0 0 30px #ff3366, 0 0 80px #ff3366; }
-      40%, 80% { transform: translateX(6px); color: #ff3366; text-shadow: 0 0 30px #ff3366, 0 0 80px #ff3366; }
-    }
-
-    /* Buttons container */
-    .buttons {
-      margin-top: 40px;
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    /* Button style */
     .btn {
-      flex: 1 1 140px;
-      padding: 16px 24px;
-      border-radius: 35px;
-      font-size: 1.2rem;
-      font-weight: 700;
-      cursor: pointer;
+      display: block;
+      margin: 1em auto;
+      padding: 1em 2em;
+      border-radius: 12px;
       color: white;
       text-decoration: none;
-      box-shadow: 0 0 25px #ff004c;
-      background: linear-gradient(135deg, #ff004c, #e00040);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      user-select: none;
+      font-weight: bold;
+      width: fit-content;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      transition: all 0.2s ease-in-out;
     }
+
     .btn:hover {
-      transform: scale(1.1) rotate(-2deg);
-      box-shadow: 0 0 40px #ff3366, 0 0 80px #ff3366;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255,255,255,0.5);
     }
 
-    /* Facebook and Instagram buttons */
-    .btn.facebook {
-      background: linear-gradient(135deg, #1877f2, #145dbf);
-      box-shadow: 0 0 25px #1877f2;
-    }
-    .btn.facebook:hover {
-      box-shadow: 0 0 40px #3b6ef0;
-    }
-    .btn.instagram {
-      background: linear-gradient(135deg, #e1306c, #b12258);
-      box-shadow: 0 0 25px #e1306c;
-    }
-    .btn.instagram:hover {
-      box-shadow: 0 0 40px #f54a86;
+    .youtube { background: #ff0000; }
+    .facebook { background: #1877f2; }
+    .instagram { background: #d62976; }
+    .tiktok { background: #000000; }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00ffcc; }
+      to { text-shadow: 0 0 30px #00ffff; }
     }
 
-    /* Button icons */
-    .btn svg {
-      width: 24px;
-      height: 24px;
-      fill: white;
-      filter: drop-shadow(0 0 3px #ff004c);
-      user-select: none;
+    /* Floating stars effect */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: radial-gradient(white 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.08;
+      animation: starMove 100s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes starMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="starfield" aria-hidden="true"></div>
+  <!-- Alien Sound on Load -->
+  <audio autoplay>
+    <source src="alien-sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+  </audio>
 
-  <!-- Floating alien emojis -->
-  <div id="alien1" class="floating-emoji" aria-hidden="true">👽</div>
-  <div id="alien2" class="floating-emoji" aria-hidden="true">👾</div>
-  <div id="ship1" class="floating-emoji" aria-hidden="true">🚀</div>
-  <div id="ship2" class="floating-emoji" aria-hidden="true">🛸</div>
+  <div class="container">
+    <div style="font-size: 5em;">👽</div>
+    <h1>ZOGO</h1>
+    <h2>Has Been Launched!</h2>
 
-  <!-- Main ZOGO text with alien emoji -->
-  <div role="banner" aria-label="ZOGO has landed announcement">
-    <div class="main-emoji" aria-hidden="true">👽</div>
-    <div class="zogo-text" aria-live="polite" aria-atomic="true">Z O G O</div>
-    <div class="launch-text" aria-live="polite" aria-atomic="true">Has Been Launched!</div>
+    <a href="https://youtube.com/shorts/Vn4kjld87bo" target="_blank" class="btn youtube">📺 YouTube Shorts</a>
+    <a href="https://www.facebook.com/share/r/176Xud7qPr/" target="_blank" class="btn facebook">📘 Facebook</a>
+    <a href="https://www.instagram.com/reel/DM3Kb94RNmP/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="btn instagram">📸 Instagram</a>
+    <a href="https://www.tiktok.com/@zogo_universe/video/7534049955942501639" target="_blank" class="btn tiktok">🎵 TikTok</a>
   </div>
-
-  <!-- Buttons -->
-  <nav class="buttons" aria-label="Social media links">
-    <a class="btn youtube" href="https://youtube.com/shorts/Vn4kjld87bo" target="_blank" rel="noopener noreferrer" aria-label="Watch ZOGO on YouTube Shorts">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M10 15l5.19-3L10 9v6zm12-3c0-1.1-.9-2-2-2h-1.17c-.31-1.02-1.22-1.81-2.29-1.81H8.46c-1.07 0-1.98.79-2.29 1.81H5c-1.1 0-2 .9-2 2v1c0 1.1.9 2 2 2h1.17c.31 1.02 1.22 1.81 2.29 1.81h6.08c1.07 0 1.98-.79 2.29-1.81H20c1.1 0 2-.9 2-2v-1z"/>
-      </svg>
-      YouTube Shorts
-    </a>
-    <a class="btn facebook" href="https://www.facebook.com/ZOGOUNIVERSE" target="_blank" rel="noopener noreferrer" aria-label="Visit ZOGO on Facebook">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M22 12a10 10 0 1 0-11.5 9.87v-7h-2v-3h2v-2c0-2 1.2-3 3-3h2v3h-1c-.7 0-1 .3-1 1v1h3l-1 3h-2v7A10 10 0 0 0 22 12z"/>
-      </svg>
-      Facebook
-    </a>
-    <a class="btn instagram" href="https://www.instagram.com/ZOGOUNIVERSE" target="_blank" rel="noopener noreferrer" aria-label="Visit ZOGO on Instagram">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5a4.25 4.25 0 0 0-4.25 4.25v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5zm4.25 3a5 5 0 1 1 0 10a5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7zm4.75-.75a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5z"/>
-      </svg>
-      Instagram
-    </a>
-  </nav>
 
 </body>
 </html>
