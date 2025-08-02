@@ -1,60 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ZOGO Universe</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZOGO Has Landed</title>
   <style>
-    body, html {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
       height: 100%;
       overflow: hidden;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: black;
     }
 
-    video {
+    video#bg {
       position: fixed;
       top: 0;
       left: 0;
-      min-width: 100%;
-      min-height: 100%;
+      width: 100vw;
+      height: 100vh;
       object-fit: cover;
       z-index: -1;
+      background-color: black;
     }
 
-    .content {
+    .overlay {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top right, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      background: rgba(0,0,0,0.4);
-      padding: 30px;
-      border-radius: 10px;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc;
+      gap: 15px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      animation: fadeInUp 1s ease-in-out;
     }
 
     .btn {
       background: #ff004c;
-      color: white;
-      padding: 12px 24px;
       border: none;
-      font-size: 18px;
-      border-radius: 20px;
+      padding: 14px 32px;
+      border-radius: 30px;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
       text-decoration: none;
+      box-shadow: 0 0 20px #ff004c;
+      transition: background 0.3s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: fadeInUp 2s ease-in-out;
+    }
+
+    .btn:hover {
+      background: #e00040;
+      transform: scale(1.05);
+    }
+
+    /* SVG icon styling inside buttons */
+    .btn svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+    }
+
+    /* Custom colors for Facebook and Instagram */
+    .btn.facebook {
+      background: #1877f2;
+      box-shadow: 0 0 20px #1877f2;
+    }
+
+    .btn.facebook:hover {
+      background: #145dbf;
+    }
+
+    .btn.instagram {
+      background: #e1306c;
+      box-shadow: 0 0 20px #e1306c;
+    }
+
+    .btn.instagram:hover {
+      background: #b12258;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
 
-  <video autoplay muted loop playsinline>
-    <source src="zogo.mp4" type="video/mp4">
+  <video id="bg" autoplay muted loop playsinline preload="auto">
+    <source src="zogo.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 
-  <div class="content">
+  <div class="overlay">
     <h1>🚀 ZOGO Has Been Launched!</h1>
-    <a class="btn" href="https://www.youtube.com/@ZOGOUNIVERSE" target="_blank">Watch on YouTube</a>
+    
+    <a class="btn youtube" href="https://www.youtube.com/@ZOGOUNIVERSE" target="_blank" rel="noopener noreferrer">
+      <!-- YouTube SVG icon -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M10 15l5.19-3L10 9v6zm12-3c0-1.1-.9-2-2-2h-1.17c-.31-1.02-1.22-1.81-2.29-1.81H8.46c-1.07 0-1.98.79-2.29 1.81H5c-1.1 0-2 .9-2 2v1c0 1.1.9 2 2 2h1.17c.31 1.02 1.22 1.81 2.29 1.81h6.08c1.07 0 1.98-.79 2.29-1.81H20c1.1 0 2-.9 2-2v-1z"/>
+      </svg>
+      Watch on YouTube
+    </a>
+
+    <a class="btn facebook" href="https://www.facebook.com/ZOGOUNIVERSE" target="_blank" rel="noopener noreferrer">
+      <!-- Facebook SVG icon -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M22 12a10 10 0 1 0-11.5 9.87v-7h-2v-3h2v-2c0-2 1.2-3 3-3h2v3h-1c-.7 0-1 .3-1 1v1h3l-1 3h-2v7A10 10 0 0 0 22 12z"/>
+      </svg>
+      Facebook
+    </a>
+
+    <a class="btn instagram" href="https://www.instagram.com/ZOGOUNIVERSE" target="_blank" rel="noopener noreferrer">
+      <!-- Instagram SVG icon -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zm0 2h8.5A3.75 3.75 0 0 1 20 7.75v8.5a3.75 3.75 0 0 1-3.75 3.75h-8.5A3.75 3.75 0 0 1 4 16.25v-8.5A3.75 3.75 0 0 1 7.75 4zm8.75 1.75a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+      </svg>
+      Instagram
+    </a>
   </div>
 
 </body>
