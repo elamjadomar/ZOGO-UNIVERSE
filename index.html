@@ -25,7 +25,7 @@
       top: 0; left: 0;
       width: 100vw; height: 100vh;
       overflow: hidden;
-      z-index: -5;
+      z-index: -10;
       background: black;
     }
     .stars, .stars2, .stars3 {
@@ -41,21 +41,21 @@
       background-size: 20px 20px;
       animation: starMove 200s linear infinite;
       opacity: 0.7;
-      z-index: -5;
+      z-index: -10;
     }
     .stars2 {
       background-image: radial-gradient(white 1.5px, transparent 1.5px);
       background-size: 40px 40px;
       animation: starMoveReverse 150s linear infinite;
       opacity: 0.4;
-      z-index: -4;
+      z-index: -9;
     }
     .stars3 {
       background-image: radial-gradient(white 2px, transparent 2px);
       background-size: 80px 80px;
       animation: starMove 100s linear infinite;
       opacity: 0.2;
-      z-index: -3;
+      z-index: -8;
     }
     @keyframes starMove {
       from { background-position: 0 0; }
@@ -73,7 +73,7 @@
       width: 100vw; height: 100vh;
       object-fit: cover;
       filter: brightness(0.3) saturate(1.3);
-      z-index: -2;
+      z-index: -5;
     }
 
     /* Spaceship silhouette container */
@@ -85,7 +85,7 @@
       height: 400px;
       transform: translate(-50%, -50%);
       opacity: 0.15;
-      z-index: -1;
+      z-index: -4;
       pointer-events: none;
       user-select: none;
     }
@@ -113,18 +113,46 @@
       animation: blink 6s infinite ease-in-out;
       position: relative;
     }
-    /* Slightly offset timing for each eye blinking */
     .eye:nth-child(2) {
       animation-delay: 3s;
     }
-
     @keyframes blink {
-      0%, 5%, 95%, 100% {
-        transform: scaleY(1);
-      }
-      50% {
-        transform: scaleY(0.1);
-      }
+      0%, 5%, 95%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.1); }
+    }
+
+    /* Floating aliens and spaceships */
+    .floating-object {
+      position: fixed;
+      width: 80px;
+      height: 80px;
+      opacity: 0.3;
+      filter: drop-shadow(0 0 4px #00ffcc);
+      animation-timing-function: ease-in-out;
+    }
+    .floating-alien {
+      background: url('https://i.imgur.com/zCOfk6M.png') no-repeat center/contain;
+      animation: floatSideToSide 12s ease-in-out infinite alternate;
+    }
+    .floating-ship {
+      background: url('https://i.imgur.com/wPfDsVR.png') no-repeat center/contain;
+      animation: floatUpDown 18s ease-in-out infinite alternate;
+    }
+    /* Positions */
+    #alien1 { top: 10%; left: 15%; animation-delay: 0s; }
+    #alien2 { top: 30%; left: 70%; animation-delay: 4s; }
+    #ship1 { top: 50%; left: 10%; animation-delay: 1s; }
+    #ship2 { top: 70%; left: 80%; animation-delay: 6s; }
+
+    @keyframes floatSideToSide {
+      0% { transform: translateX(0) translateY(0) rotate(0deg); }
+      50% { transform: translateX(30px) translateY(-10px) rotate(8deg); }
+      100% { transform: translateX(0) translateY(0) rotate(0deg); }
+    }
+    @keyframes floatUpDown {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); }
+      50% { transform: translateY(-30px) translateX(15px) rotate(-10deg); }
+      100% { transform: translateY(0) translateX(0) rotate(0deg); }
     }
 
     /* Overlay container */
@@ -144,7 +172,7 @@
         0 0 50px #00ffcc,
         inset 0 0 30px #00ffcc;
       user-select: none;
-      z-index: 1;
+      z-index: 2;
     }
 
     h1 {
@@ -156,7 +184,6 @@
       animation: pulseGlow 3s ease-in-out infinite alternate;
       user-select: none;
     }
-
     @keyframes pulseGlow {
       from {
         color: #00ffcc;
@@ -239,8 +266,6 @@
         box-shadow: 0 0 40px #ff3366;
       }
     }
-
-    /* Button icons */
     .btn svg {
       width: 28px;
       height: 28px;
@@ -248,8 +273,6 @@
       filter: drop-shadow(0 0 3px #ff004c);
       user-select: none;
     }
-
-    /* Facebook button */
     .btn.facebook {
       background: linear-gradient(135deg, #1877f2, #145dbf);
       box-shadow: 0 0 25px #1877f2;
@@ -262,8 +285,6 @@
       from { box-shadow: 0 0 20px #1877f2; }
       to { box-shadow: 0 0 40px #3b6ef0; }
     }
-
-    /* Instagram button */
     .btn.instagram {
       background: linear-gradient(135deg, #e1306c, #b12258);
       box-shadow: 0 0 25px #e1306c;
@@ -277,22 +298,73 @@
       to { box-shadow: 0 0 40px #f54a86; }
     }
 
+    /* Spaceship silhouette container */
+    .spaceship {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      transform: translate(-50%, -50%);
+      opacity: 0.15;
+      z-index: -4;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Alien eyes */
+    .alien-eyes {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      width: 180px;
+      height: 80px;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      user-select: none;
+      filter: drop-shadow(0 0 6px #00ffcc);
+    }
+    .eye {
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle at 12px 12px, #00ffcc 20%, #003f3f 80%);
+      border-radius: 50%;
+      box-shadow: inset 0 0 15px #00fff5;
+      animation: blink 6s infinite ease-in-out;
+      position: relative;
+    }
+    .eye:nth-child(2) {
+      animation-delay: 3s;
+    }
+    @keyframes blink {
+      0%, 5%, 95%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.1); }
+    }
+
   </style>
 </head>
 <body>
 
   <!-- Starfield background layers -->
-  <div class="starfield">
+  <div class="starfield" aria-hidden="true">
     <div class="stars"></div>
     <div class="stars2"></div>
     <div class="stars3"></div>
   </div>
 
   <!-- Background video -->
-  <video id="bg" autoplay muted loop playsinline preload="auto">
+  <video id="bg" autoplay muted loop playsinline preload="auto" aria-hidden="true">
     <source src="zogo.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
+
+  <!-- Floating aliens and spaceships -->
+  <div id="alien1" class="floating-object floating-alien" aria-hidden="true"></div>
+  <div id="alien2" class="floating-object floating-alien" aria-hidden="true"></div>
+  <div id="ship1" class="floating-object floating-ship" aria-hidden="true"></div>
+  <div id="ship2" class="floating-object floating-ship" aria-hidden="true"></div>
 
   <!-- Spaceship silhouette SVG with blinking alien eyes -->
   <div class="spaceship" aria-hidden="true">
@@ -330,57 +402,4 @@
       Facebook
     </a>
 
-    <a class="btn instagram" href="https://www.instagram.com/ZOGOUNIVERSE" target="_blank" rel="noopener noreferrer" aria-label="Visit ZOGO on Instagram">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zm0 2h8.5A3.75 3.75 0 0 1 20 7.75v8.5a3.75 3.75 0 0 1-3.75 3.75h-8.5A3.75 3.75 0 0 1 4 16.25v-8.5A3.75 3.75 0 0 1 7.75 4zm8.75 1.75a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
-      </svg>
-      Instagram
-    </a>
-  </main>
-
-  <!-- Ambient space sound with mute/unmute -->
-  <audio id="space-sound" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2021/08/08/audio_2e01536d4f.mp3?filename=space-ambience-11009.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-  <button id="sound-toggle" aria-label="Toggle ambient space sound" 
-    style="position: fixed; bottom: 20px; right: 20px; 
-           background: #00ffcc; border:none; border-radius: 50%; 
-           width: 50px; height: 50px; cursor: pointer; 
-           box-shadow: 0 0 20px #00ffcc; color: black; font-weight: bold; font-size: 18px;">
-    🔈
-  </button>
-
-  <script>
-    // Sound toggle logic
-    const soundToggle = document.getElementById('sound-toggle');
-    const spaceSound = document.getElementById('space-sound');
-    let soundOn = false;
-
-    soundToggle.addEventListener('click', () => {
-      if (!soundOn) {
-        spaceSound.volume = 0.3;
-        spaceSound.play();
-        soundToggle.textContent = '🔊';
-        soundOn = true;
-      } else {
-        spaceSound.pause();
-        soundToggle.textContent = '🔈';
-        soundOn = false;
-      }
-    });
-
-    // Optional: Play sound on first user interaction (required by some browsers)
-    document.body.addEventListener('click', () => {
-      if (!soundOn) {
-        spaceSound.volume = 0.3;
-        spaceSound.play();
-        soundToggle.textContent = '🔊';
-        soundOn = true;
-      }
-    }, { once: true });
-
-  </script>
-
-</body>
-</html>
+    <a class="btn instagram
