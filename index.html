@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ZOGO Has Landed — Press the Red Button!</title>
+  <title>ZOGO Has Been Launched</title>
   <style>
     /* Reset & base */
     * {
@@ -16,133 +16,46 @@
       background: radial-gradient(ellipse at center, #02020f 0%, #000000 80%);
       color: #00ffcc;
       user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
       position: relative;
     }
 
-    /* Starfield layers */
+    /* Starfield background */
     .starfield {
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      overflow: hidden;
-      z-index: -10;
-      background: black;
-    }
-    .stars, .stars2, .stars3 {
-      position: absolute;
-      top: 0; left: 0;
-      width: 200vw; height: 200vh;
-      background-repeat: repeat;
-      animation-iteration-count: infinite;
-      animation-timing-function: linear;
-    }
-    .stars {
-      background-image: radial-gradient(white 1px, transparent 1px);
-      background-size: 20px 20px;
+      background:
+        radial-gradient(white 1px, transparent 1px) 0 0 / 20px 20px repeat,
+        radial-gradient(white 1.5px, transparent 1.5px) 10px 10px / 40px 40px repeat,
+        radial-gradient(white 2px, transparent 2px) 20px 20px / 80px 80px repeat;
       animation: starMove 200s linear infinite;
+      z-index: -1;
       opacity: 0.7;
-      z-index: -10;
-    }
-    .stars2 {
-      background-image: radial-gradient(white 1.5px, transparent 1.5px);
-      background-size: 40px 40px;
-      animation: starMoveReverse 150s linear infinite;
-      opacity: 0.4;
-      z-index: -9;
-    }
-    .stars3 {
-      background-image: radial-gradient(white 2px, transparent 2px);
-      background-size: 80px 80px;
-      animation: starMove 100s linear infinite;
-      opacity: 0.2;
-      z-index: -8;
     }
     @keyframes starMove {
-      from { background-position: 0 0; }
-      to { background-position: 2000px 2000px; }
-    }
-    @keyframes starMoveReverse {
-      from { background-position: 2000px 2000px; }
-      to { background-position: 0 0; }
+      from { background-position: 0 0, 10px 10px, 20px 20px; }
+      to { background-position: 2000px 2000px, 2010px 2010px, 2020px 2020px; }
     }
 
-    /* Background video */
-    video#bg {
+    /* Floating emojis */
+    .floating-emoji {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      object-fit: cover;
-      filter: brightness(0.3) saturate(1.3);
-      z-index: -5;
-    }
-
-    /* Spaceship silhouette container */
-    .spaceship {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 400px;
-      height: 400px;
-      transform: translate(-50%, -50%);
-      opacity: 0.15;
-      z-index: -4;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    /* Alien eyes */
-    .alien-eyes {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      width: 180px;
-      height: 80px;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-      user-select: none;
-      filter: drop-shadow(0 0 6px #00ffcc);
-    }
-    .eye {
-      width: 40px;
-      height: 40px;
-      background: radial-gradient(circle at 12px 12px, #00ffcc 20%, #003f3f 80%);
-      border-radius: 50%;
-      box-shadow: inset 0 0 15px #00fff5;
-      animation: blink 6s infinite ease-in-out;
-      position: relative;
-    }
-    .eye:nth-child(2) {
-      animation-delay: 3s;
-    }
-    @keyframes blink {
-      0%, 5%, 95%, 100% { transform: scaleY(1); }
-      50% { transform: scaleY(0.1); }
-    }
-
-    /* Floating aliens and spaceships */
-    .floating-object {
-      position: fixed;
-      width: 80px;
-      height: 80px;
+      font-size: 4rem;
       opacity: 0.3;
-      filter: drop-shadow(0 0 4px #00ffcc);
       animation-timing-function: ease-in-out;
+      user-select: none;
+      filter: drop-shadow(0 0 4px #00ffcc);
     }
-    .floating-alien {
-      background: url('https://i.imgur.com/zCOfk6M.png') no-repeat center/contain;
-      animation: floatSideToSide 12s ease-in-out infinite alternate;
-    }
-    .floating-ship {
-      background: url('https://i.imgur.com/wPfDsVR.png') no-repeat center/contain;
-      animation: floatUpDown 18s ease-in-out infinite alternate;
-    }
-    /* Positions */
-    #alien1 { top: 10%; left: 15%; animation-delay: 0s; }
-    #alien2 { top: 30%; left: 70%; animation-delay: 4s; }
-    #ship1 { top: 50%; left: 10%; animation-delay: 1s; }
-    #ship2 { top: 70%; left: 80%; animation-delay: 6s; }
+    /* Positions and animation delays */
+    #alien1 { top: 12%; left: 15%; animation: floatSideToSide 12s ease-in-out infinite alternate; }
+    #alien2 { top: 35%; left: 70%; animation: floatSideToSide 16s ease-in-out infinite alternate; animation-delay: 4s; }
+    #ship1 { top: 50%; left: 10%; animation: floatUpDown 18s ease-in-out infinite alternate; animation-delay: 1s; }
+    #ship2 { top: 70%; left: 80%; animation: floatUpDown 20s ease-in-out infinite alternate; animation-delay: 6s; }
 
     @keyframes floatSideToSide {
       0% { transform: translateX(0) translateY(0) rotate(0deg); }
@@ -155,32 +68,10 @@
       100% { transform: translateY(0) translateX(0) rotate(0deg); }
     }
 
-    /* Overlay container */
-    .overlay {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 420px;
-      width: 90vw;
-      background: rgba(0, 255, 204, 0.12);
-      border: 2px solid #00ffcc;
-      border-radius: 25px;
-      padding: 35px 30px;
-      text-align: center;
-      box-shadow:
-        0 0 50px #00ffcc,
-        inset 0 0 30px #00ffcc;
-      user-select: none;
-      z-index: 2;
-    }
-
-    h1 {
-      font-size: 3.2rem;
-      margin-bottom: 30px;
-      text-shadow:
-        0 0 15px #00ffcc,
-        0 0 30px #00ffcc;
+    /* Main Text */
+    .main-emoji {
+      font-size: 8rem;
+      filter: drop-shadow(0 0 15px #00ffcc);
       animation: pulseGlow 3s ease-in-out infinite alternate;
       user-select: none;
     }
@@ -199,47 +90,66 @@
       }
     }
 
-    /* Press the red button animated text */
-    .red-button-text {
+    .zogo-text {
+      font-size: 5rem;
       font-weight: 900;
-      font-size: 1.5rem;
-      color: #ff004c;
-      text-shadow:
-        0 0 8px #ff004c,
-        0 0 20px #ff004c;
-      animation: glowPulse 2.8s ease-in-out infinite alternate, shake 1.2s ease-in-out infinite;
-      margin-bottom: 30px;
+      letter-spacing: 0.3em;
+      margin-bottom: 10px;
       user-select: none;
+      color: #00ffcc;
+      text-shadow:
+        0 0 30px #00ffcc,
+        0 0 60px #00ffcc;
+      animation: glowPulse 2.5s ease-in-out infinite alternate;
     }
     @keyframes glowPulse {
       from {
-        color: #ff004c;
+        color: #00ffcc;
         text-shadow:
-          0 0 10px #ff004c,
-          0 0 30px #ff004c;
+          0 0 25px #00ffcc,
+          0 0 50px #00ffcc;
       }
       to {
-        color: #ff3366;
+        color: #aaffee;
         text-shadow:
-          0 0 20px #ff3366,
-          0 0 50px #ff3366;
+          0 0 50px #00ffcc,
+          0 0 100px #00ffcc;
       }
     }
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-3px); }
-      40%, 80% { transform: translateX(3px); }
+
+    .launch-text {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #ff004c;
+      text-shadow:
+        0 0 15px #ff004c,
+        0 0 40px #ff004c;
+      animation: shakeGlow 2s ease-in-out infinite alternate;
+      user-select: none;
+    }
+    @keyframes shakeGlow {
+      0%, 100% { transform: translateX(0); color: #ff004c; text-shadow: 0 0 15px #ff004c, 0 0 40px #ff004c; }
+      20%, 60% { transform: translateX(-6px); color: #ff3366; text-shadow: 0 0 30px #ff3366, 0 0 80px #ff3366; }
+      40%, 80% { transform: translateX(6px); color: #ff3366; text-shadow: 0 0 30px #ff3366, 0 0 80px #ff3366; }
     }
 
-    /* Buttons */
+    /* Buttons container */
+    .buttons {
+      margin-top: 40px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    /* Button style */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 40px;
-      margin: 10px auto 5px;
+      flex: 1 1 140px;
+      padding: 16px 24px;
       border-radius: 35px;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
       cursor: pointer;
       color: white;
@@ -247,159 +157,81 @@
       box-shadow: 0 0 25px #ff004c;
       background: linear-gradient(135deg, #ff004c, #e00040);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-      animation: buttonPulse 2s infinite alternate;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      width: 100%;
-      max-width: 320px;
-      margin-bottom: 15px;
+      gap: 10px;
+      user-select: none;
     }
     .btn:hover {
       transform: scale(1.1) rotate(-2deg);
       box-shadow: 0 0 40px #ff3366, 0 0 80px #ff3366;
     }
-    @keyframes buttonPulse {
-      from {
-        box-shadow: 0 0 20px #ff004c;
-      }
-      to {
-        box-shadow: 0 0 40px #ff3366;
-      }
-    }
-    .btn svg {
-      width: 28px;
-      height: 28px;
-      fill: white;
-      filter: drop-shadow(0 0 3px #ff004c);
-      user-select: none;
-    }
+
+    /* Facebook and Instagram buttons */
     .btn.facebook {
       background: linear-gradient(135deg, #1877f2, #145dbf);
       box-shadow: 0 0 25px #1877f2;
-      animation: fbPulse 2s infinite alternate;
     }
     .btn.facebook:hover {
       box-shadow: 0 0 40px #3b6ef0;
     }
-    @keyframes fbPulse {
-      from { box-shadow: 0 0 20px #1877f2; }
-      to { box-shadow: 0 0 40px #3b6ef0; }
-    }
     .btn.instagram {
       background: linear-gradient(135deg, #e1306c, #b12258);
       box-shadow: 0 0 25px #e1306c;
-      animation: instaPulse 2s infinite alternate;
     }
     .btn.instagram:hover {
       box-shadow: 0 0 40px #f54a86;
     }
-    @keyframes instaPulse {
-      from { box-shadow: 0 0 20px #e1306c; }
-      to { box-shadow: 0 0 40px #f54a86; }
-    }
 
-    /* Spaceship silhouette container */
-    .spaceship {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 400px;
-      height: 400px;
-      transform: translate(-50%, -50%);
-      opacity: 0.15;
-      z-index: -4;
-      pointer-events: none;
+    /* Button icons */
+    .btn svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+      filter: drop-shadow(0 0 3px #ff004c);
       user-select: none;
     }
-
-    /* Alien eyes */
-    .alien-eyes {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      width: 180px;
-      height: 80px;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-      user-select: none;
-      filter: drop-shadow(0 0 6px #00ffcc);
-    }
-    .eye {
-      width: 40px;
-      height: 40px;
-      background: radial-gradient(circle at 12px 12px, #00ffcc 20%, #003f3f 80%);
-      border-radius: 50%;
-      box-shadow: inset 0 0 15px #00fff5;
-      animation: blink 6s infinite ease-in-out;
-      position: relative;
-    }
-    .eye:nth-child(2) {
-      animation-delay: 3s;
-    }
-    @keyframes blink {
-      0%, 5%, 95%, 100% { transform: scaleY(1); }
-      50% { transform: scaleY(0.1); }
-    }
-
   </style>
 </head>
 <body>
 
-  <!-- Starfield background layers -->
-  <div class="starfield" aria-hidden="true">
-    <div class="stars"></div>
-    <div class="stars2"></div>
-    <div class="stars3"></div>
+  <div class="starfield" aria-hidden="true"></div>
+
+  <!-- Floating alien emojis -->
+  <div id="alien1" class="floating-emoji" aria-hidden="true">👽</div>
+  <div id="alien2" class="floating-emoji" aria-hidden="true">👾</div>
+  <div id="ship1" class="floating-emoji" aria-hidden="true">🚀</div>
+  <div id="ship2" class="floating-emoji" aria-hidden="true">🛸</div>
+
+  <!-- Main ZOGO text with alien emoji -->
+  <div role="banner" aria-label="ZOGO has landed announcement">
+    <div class="main-emoji" aria-hidden="true">👽</div>
+    <div class="zogo-text" aria-live="polite" aria-atomic="true">Z O G O</div>
+    <div class="launch-text" aria-live="polite" aria-atomic="true">Has Been Launched!</div>
   </div>
 
-  <!-- Background video -->
-  <video id="bg" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-    <source src="zogo.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-
-  <!-- Floating aliens and spaceships -->
-  <div id="alien1" class="floating-object floating-alien" aria-hidden="true"></div>
-  <div id="alien2" class="floating-object floating-alien" aria-hidden="true"></div>
-  <div id="ship1" class="floating-object floating-ship" aria-hidden="true"></div>
-  <div id="ship2" class="floating-object floating-ship" aria-hidden="true"></div>
-
-  <!-- Spaceship silhouette SVG with blinking alien eyes -->
-  <div class="spaceship" aria-hidden="true">
-    <svg viewBox="0 0 512 512" width="400" height="400" fill="#00ffcc" opacity="0.15" >
-      <!-- Silhouette simplified spaceship shape -->
-      <path d="M256 0C140 110 96 192 96 256s44 146 160 256c116-110 160-192 160-256S372 110 256 0z"/>
-    </svg>
-    <div class="alien-eyes">
-      <div class="eye" aria-label="Alien eye left"></div>
-      <div class="eye" aria-label="Alien eye center"></div>
-      <div class="eye" aria-label="Alien eye right"></div>
-    </div>
-  </div>
-
-  <!-- Overlay with text and buttons -->
-  <main class="overlay" role="main" aria-label="ZOGO landing page">
-
-    <h1>🚀 ZOGO Has Been Launched!</h1>
-
-    <div class="red-button-text" aria-live="polite" aria-atomic="true">
-      Press the Red Button!
-    </div>
-
+  <!-- Buttons -->
+  <nav class="buttons" aria-label="Social media links">
     <a class="btn youtube" href="https://youtube.com/shorts/Vn4kjld87bo" target="_blank" rel="noopener noreferrer" aria-label="Watch ZOGO on YouTube Shorts">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M10 15l5.19-3L10 9v6zm12-3c0-1.1-.9-2-2-2h-1.17c-.31-1.02-1.22-1.81-2.29-1.81H8.46c-1.07 0-1.98.79-2.29 1.81H5c-1.1 0-2 .9-2 2v1c0 1.1.9 2 2 2h1.17c.31 1.02 1.22 1.81 2.29 1.81h6.08c1.07 0 1.98-.79 2.29-1.81H20c1.1 0 2-.9 2-2v-1z"/>
       </svg>
-      Watch on YouTube Shorts
+      YouTube Shorts
     </a>
-
     <a class="btn facebook" href="https://www.facebook.com/ZOGOUNIVERSE" target="_blank" rel="noopener noreferrer" aria-label="Visit ZOGO on Facebook">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M22 12a10 10 0 1 0-11.5 9.87v-7h-2v-3h2v-2c0-2 1.2-3 3-3h2v3h-1c-.7 0-1 .3-1 1v1h3l-1 3h-2v7A10 10 0 0 0 22 12z"/>
       </svg>
       Facebook
     </a>
+    <a class="btn instagram" href="https://www.instagram.com/ZOGOUNIVERSE" target="_blank" rel="noopener noreferrer" aria-label="Visit ZOGO on Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5a4.25 4.25 0 0 0-4.25 4.25v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5zm4.25 3a5 5 0 1 1 0 10a5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7zm4.75-.75a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5z"/>
+      </svg>
+      Instagram
+    </a>
+  </nav>
 
-    <a class="btn instagram
+</body>
+</html>
